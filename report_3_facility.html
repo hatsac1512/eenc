@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>3. Facility Standards &mdash; WPRO EENC 2023</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<style>
+:root{--navy:#831843;--navy2:#9F1239;--navy3:#BE185D;--orange:#EC4899;--bg:#FDF2F8;--surface:#fff;--text:#1a2733;--mute:#5C6B7A;--border:#FBCFE8;--good:#2A9D8F;--warn:#F4A261;--bad:#D62828;--shadow:0 4px 24px rgba(0,35,64,.08);--font:Roboto,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.topnav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+.topnav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
+.brand-bar{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);font-size:14px;flex-shrink:0}
+.brand-dot{width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px rgba(216,90,26,.5)}
+.brand-bar small{font-size:11px;color:var(--mute);font-weight:600}
+.nav-links{display:flex;gap:4px;align-items:center;flex:1;justify-content:flex-end}
+.nav-link{padding:8px 12px;border-radius:8px;font-size:13px;font-weight:600;color:var(--mute);transition:all .15s ease;white-space:nowrap}
+.nav-link:hover{background:var(--bg);color:var(--navy)}
+.nav-link.active{background:var(--navy);color:#fff}
+.nav-mobile{display:none;background:transparent;border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer;font:inherit;font-size:13px;font-weight:700;color:var(--navy)}
+.section-hero{position:relative;background:linear-gradient(135deg,#831843 0%,#9F1239 100%);color:#fff;padding:56px 24px 72px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('photos/4.jpg') center/cover;opacity:.20;mix-blend-mode:luminosity}
+.section-hero::after{content:"";position:absolute;right:-100px;top:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(216,90,26,.25),transparent 70%)}
+.hero-inner{max-width:1280px;margin:0 auto;position:relative;z-index:1}
+.crumbs{font-size:12px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
+.crumbs a{color:rgba(255,255,255,.85)}
+.crumbs .sep{margin:0 8px;opacity:.4}
+.section-num{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--orange);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+.section-num-badge{width:36px;height:36px;border-radius:50%;background:var(--orange);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+.section-hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.01em;line-height:1.15;max-width:880px;margin-bottom:14px}
+.section-hero p{font-size:16px;color:rgba(255,255,255,.86);max-width:780px;line-height:1.65}
+.kpi-strip{max-width:1280px;margin:-32px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;z-index:5}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.kpi-num{font-size:32px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.kpi-num small{font-size:16px;font-weight:600;color:var(--mute)}
+.kpi-lbl{font-size:11px;font-weight:700;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-top:6px}
+.content{max-width:1280px;margin:0 auto;padding:48px 24px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:22px}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:6px;flex-wrap:wrap}
+.fig-num{display:inline-flex;align-items:center;background:rgba(216,90,26,.12);color:var(--orange);font-weight:800;font-size:11px;padding:4px 10px;border-radius:6px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.card h2{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.01em;line-height:1.25;margin-bottom:8px}
+.card .sub{font-size:13.5px;color:var(--mute);line-height:1.6;margin-bottom:20px;max-width:780px}
+.card-tag{font-size:10px;font-weight:800;padding:5px 10px;border-radius:6px;background:#FDF2F8;color:var(--navy);letter-spacing:.05em;text-transform:uppercase;flex-shrink:0}
+.chart-box{position:relative;height:380px;margin-top:8px}
+.chart-box.tall{height:480px}
+.chart-box.huge{height:620px}
+.row2{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;margin-bottom:22px}
+.insight{display:flex;align-items:flex-start;gap:14px;background:#FCE7F3;border-left:4px solid var(--orange);padding:18px 20px;border-radius:0 10px 10px 0;margin-top:18px}
+.insight-icon{flex-shrink:0;width:34px;height:34px;background:var(--orange);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px}
+.insight-body{font-size:13.5px;line-height:1.65;color:#831843}
+.insight-body strong{color:var(--navy)}
+.insight.bad{background:#FEE2E2;border-left-color:var(--bad)}
+.insight.bad .insight-icon{background:var(--bad)}
+.insight.good{background:#E9F5F2;border-left-color:var(--good)}
+.insight.good .insight-icon{background:var(--good)}
+.commod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.commod{background:linear-gradient(135deg,#fff 0%,#FDF2F8 100%);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;transition:transform .2s ease}
+.commod:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.commod-icon{width:42px;height:42px;border-radius:50%;background:rgba(216,90,26,.14);color:var(--orange);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;margin-bottom:8px}
+.commod-num{font-size:32px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.commod-num small{font-size:14px;color:var(--mute);font-weight:600}
+.commod-num.good{color:var(--good)}.commod-num.warn{color:#C77A1F}.commod-num.bad{color:var(--bad)}
+.commod-lbl{font-size:12px;color:var(--text);font-weight:700;margin-top:6px;line-height:1.35}
+.commod-status{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-top:6px;padding:3px 8px;border-radius:5px;display:inline-block}
+.commod-status.good{background:rgba(42,157,143,.15);color:var(--good)}
+.commod-status.warn{background:rgba(244,162,97,.18);color:#C77A1F}
+.commod-status.bad{background:rgba(214,40,40,.15);color:var(--bad)}
+/* Tables — pt-table style (matches Tab 4 reference) */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+thead th{background:linear-gradient(135deg,var(--navy) 0%,var(--orange) 100%);color:#fff;font-weight:800;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:11px 10px;text-align:center;white-space:nowrap}
+thead th:first-child{text-align:left;border-top-left-radius:8px}
+thead th:last-child{border-top-right-radius:8px}
+tbody td{padding:10px;border-bottom:1px solid var(--border);text-align:center;font-weight:700;font-variant-numeric:tabular-nums;font-size:13px;color:var(--text)}
+tbody td:first-child{text-align:left;font-weight:600;font-size:12.5px}
+tbody tr:nth-child(even){background:#FFF7FB}
+tbody tr:hover{background:#FCE7F3}
+tbody td.cell-good{color:var(--good);font-weight:800;background:rgba(42,157,143,.08)}
+tbody td.cell-warn{color:#C77A1F;font-weight:800;background:rgba(244,162,97,.08)}
+tbody td.cell-bad{color:var(--bad);font-weight:800;background:rgba(214,40,40,.05)}
+tbody td.nodata{color:#9CA3AF;font-style:italic;font-weight:600;font-size:11.5px}
+.cell-pct{font-weight:700}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:last-child td:first-child{border-bottom-left-radius:8px}
+tbody tr:last-child td:last-child{border-bottom-right-radius:8px}
+@media(max-width:640px){table{min-width:640px;font-size:11.5px}thead th{padding:8px 6px;font-size:10px}tbody td{padding:8px 6px}}
+.foot{font-size:11px;color:var(--mute);text-align:right;margin-top:16px}
+.footer{background:var(--navy);color:rgba(255,255,255,.6);padding:24px;text-align:center;font-size:12px;margin-top:48px}
+.footer a{color:rgba(255,255,255,.85);font-weight:700}
+@media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(2,1fr)}.row2{grid-template-columns:1fr}.commod-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){
+  .topnav-inner{padding:0 16px;height:58px}
+  .nav-links{display:none;position:absolute;top:58px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;padding:8px;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}.nav-link{padding:12px 16px}.nav-mobile{display:inline-flex}
+  .section-hero{padding:36px 18px 56px}.section-hero h1{font-size:24px}.section-hero p{font-size:14px}
+  .kpi-strip{grid-template-columns:1fr 1fr;padding:0 18px;gap:10px;margin-top:-28px}
+  .kpi{padding:14px}.kpi-num{font-size:24px}
+  .content{padding:32px 18px}.card{padding:18px;margin-bottom:14px}.card h2{font-size:17px}
+  .chart-box{height:300px}.chart-box.tall{height:420px}.chart-box.huge{height:560px}
+  .commod-grid{grid-template-columns:1fr 1fr;gap:10px}.commod{padding:12px}.commod-num{font-size:24px}
+}
+@media(max-width:480px){.kpi-strip{grid-template-columns:1fr}.commod-grid{grid-template-columns:1fr}}
+
+.data-source-banner{background:linear-gradient(135deg,#FFF7FB 0%,#FCE7F3 100%);border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:13px;color:var(--text);line-height:1.6;display:flex;gap:12px;align-items:center}
+.data-source-icon{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900;font-size:14px;display:inline-flex;align-items:center;justify-content:center;font-style:italic;font-family:Georgia,serif}
+
+/* Feature image banner (Tabs 1-5) */
+.feature-banner{display:grid;grid-template-columns:minmax(260px,400px) 1fr;gap:24px;background:linear-gradient(135deg,#fff 0%,#FCE7F3 100%);border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-bottom:24px;box-shadow:0 8px 28px rgba(131,24,67,.08)}
+.feature-banner-img{position:relative;min-height:200px;background:linear-gradient(135deg,var(--navy) 0%,var(--orange) 100%);overflow:hidden}
+.feature-banner-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.feature-banner:hover .feature-banner-img img{transform:scale(1.04)}
+.feature-banner-img::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(131,24,67,.25) 0%,transparent 50%);pointer-events:none}
+.feature-banner-text{padding:24px 26px;display:flex;flex-direction:column;justify-content:center}
+.feature-banner-eyebrow{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:inline-flex;align-items:center;gap:6px}
+.feature-banner-eyebrow::before{content:"";width:24px;height:2px;background:var(--orange);border-radius:1px}
+.feature-banner-title{font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.01em;line-height:1.25;margin-bottom:10px}
+.feature-banner-caption{font-size:14px;color:var(--text);line-height:1.65}
+.feature-banner-caption strong{color:var(--navy)}
+@media(max-width:820px){
+  .feature-banner{grid-template-columns:1fr}
+  .feature-banner-img{min-height:200px;max-height:240px}
+  .feature-banner-title{font-size:18px}
+  .feature-banner-text{padding:20px}
+}
+
+
+/* Segmented chart filter */
+.chart-filter{display:inline-flex;gap:0;background:#FDF2F8;border:1px solid var(--border);border-radius:8px;padding:3px;margin-bottom:10px;flex-wrap:wrap}
+.chart-filter button{background:transparent;border:none;padding:7px 14px;border-radius:6px;font:inherit;font-size:12px;font-weight:700;color:var(--mute);cursor:pointer;letter-spacing:.02em;transition:all .15s ease;white-space:nowrap}
+.chart-filter button:hover{color:var(--navy)}
+.chart-filter button.active{background:var(--navy);color:#fff;box-shadow:0 1px 3px rgba(131,24,67,.25)}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand-bar" href="report_index.html"><span class="brand-dot"></span>WHO WPRO<small>EENC 2023 Report</small></a>
+    <div class="nav-links" id="navLinks">
+      <a class="nav-link" href="report_index.html">Overview</a>
+      <a class="nav-link" href="report_1_readiness.html">1. Benchmarks &amp; EENC coverage</a>
+      <a class="nav-link" href="report_2_care.html">2. Practices</a>
+      <a class="nav-link" href="report_4_preterm.html">3. Preterm/LBW</a>
+      <a class="nav-link active" href="report_3_facility.html">4. Facility readiness</a>
+      <a class="nav-link" href="report_5_outcomes.html">5. Outcomes</a>
+      <a class="nav-link" href="report_6_country.html">6. Country profiles</a>
+    </div>
+    <button class="nav-mobile" onclick="document.getElementById('navLinks').classList.toggle('open')">Menu</button>
+  </div>
+</nav>
+
+<header class="section-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="crumbs"><a href="report_index.html">Overview</a><span class="sep">/</span>Facility standards</div>
+    <div class="section-num"><span class="section-num-badge">3</span>Section Three</div>
+    <h1>Facility Standards &mdash; what's on the shelves and at the sink</h1>
+    <p>Bedside excellence requires functioning supply systems behind it. Chart review of 1,117 maternal records reveals what staff document and do; 528 room inspections reveal whether basic IPC infrastructure works; 207 commodity audits reveal what is actually within arm's reach when a complication strikes.</p>
+  </div>
+</header>
+
+<div class="kpi-strip">
+  <div class="kpi"><div class="kpi-num">94<small>%</small></div><div class="kpi-lbl">AMTSL oxytocin &lt;1 min</div></div>
+  <div class="kpi"><div class="kpi-num">76<small>%</small></div><div class="kpi-lbl">Oxygen in delivery + NICU</div></div>
+  <div class="kpi"><div class="kpi-num">36<small>%</small></div><div class="kpi-lbl">All life-saving medicines ready</div></div>
+  <div class="kpi"><div class="kpi-num">27<small>%</small></div><div class="kpi-lbl">CPAP fully ready</div></div>
+  <div class="kpi"><div class="kpi-num">23<small>%</small></div><div class="kpi-lbl">All commodities ready</div></div>
+</div>
+
+<main class="content">
+
+  <div class="data-source-banner">
+    <span class="data-source-icon">i</span>
+    <span><strong>Data source: 2023 EENC Regional Assessment Survey</strong> &mdash; all facility readiness, programme, and stock-out indicators on this page reflect 2023 hospital-level observations across 9 priority countries.</span>
+  </div>
+
+  <div class="feature-banner">
+    <div class="feature-banner-img">
+      <img src="photos/10.jpg" alt="Hospital labour ward" loading="lazy">
+    </div>
+    <div class="feature-banner-text">
+      <span class="feature-banner-eyebrow">In focus</span>
+      <h3 class="feature-banner-title">Facility readiness underpins safe newborn care</h3>
+      <p class="feature-banner-caption">Adequate handwashing, alcohol-based hand rub, clean resuscitation areas, and reliable supply of life-saving medicines (oxytocin, antenatal corticosteroids, magnesium sulfate) determine whether EENC can be delivered consistently.</p>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <span class="fig-num">Figure 10</span>
+        <h2>Hand-washing resources by room type</h2>
+        <p class="sub">Five infrastructure criteria across 528 rooms in 207 facilities. The composite "all four criteria met" (clean sink + running water + soap + single-use towels) is the binding constraint.</p>
+      </div>
+    </div>
+    <div class="chart-box tall"><canvas id="chHands"></canvas></div>
+    <div class="insight bad">
+      <span class="insight-icon">!</span>
+      <span class="insight-body"><strong>Postnatal rooms are the IPC weak spot</strong>: 75% have clean sinks but only 27% meet all four criteria. The single-use towel/dryer is the main missing element across all room types. Operating rooms and NCUs perform best (53% and 48% all-criteria).</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <span class="fig-num">Figure 11</span>
+        <h2>Life-saving medicines &amp; commodities &mdash; full readiness</h2>
+        <p class="sub">"Fully ready" = available + correctly stored + non-expired + stock records exist + no stock-outs in 6 months. Regional aggregate across 207 facility audits.</p>
+      </div>
+    </div>
+    <div class="chart-box tall"><canvas id="chCommod"></canvas></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <span class="fig-num">Table 2</span>
+        <h2>Country comparison &mdash; commodity availability</h2>
+        <p class="sub">% of facilities in each country with each commodity available (any). Excludes Solomon Islands HIV/syphilis kit data points (0 facilities reporting).</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Country</th><th>n</th><th>MgSO4</th><th>Oxytocin</th><th>ACS</th><th>Abx pPROM</th><th>Syphilis</th><th>HIV</th><th>Average</th></tr>
+        </thead>
+        <tbody id="commodTbl"></tbody>
+      </table>
+    </div>
+    <div class="foot">Source: WPRO Regional EENC Assessment 2023</div>
+  </div>
+
+</main>
+
+<footer class="footer">&copy; WHO Regional Office for the Western Pacific &middot; <a href="report_index.html">Back to overview</a></footer>
+
+<script>
+const NAVY="#831843", ORANGE="#EC4899", GOOD="#2A9D8F", WARN="#F4A261", BAD="#D62828";
+Chart.defaults.font.family="Roboto, system-ui, sans-serif";
+Chart.defaults.color="#1a2733";
+Chart.register(ChartDataLabels);
+const dlBase={anchor:'end',align:'end',offset:6,clamp:true,font:{weight:'800',size:11},
+  color:(c)=>{const v=c.dataset.data[c.dataIndex];return typeof v==='number'&&v>=80?'#fff':'#1a2733';},
+  align:(c)=>{const v=c.dataset.data[c.dataIndex];return typeof v==='number'&&v>=80?'start':'end';},
+  offset:(c)=>{const v=c.dataset.data[c.dataIndex];return typeof v==='number'&&v>=80?-4:6;},
+  formatter:(v)=>v==null||isNaN(v)||v===0?'':(typeof v==='number'?v.toFixed(0)+'%':v)};
+
+// === Fig 10: Handwashing by room type ===
+new Chart(document.getElementById('chHands'),{type:'bar',
+  data:{labels:["Clean sinks","Running water","Soap","Single-use towels","All four criteria"],
+    datasets:[
+      {label:"Delivery Room (n=153)",data:[83,92,77,50,43],backgroundColor:NAVY,borderRadius:4},
+      {label:"Neonatal Care Unit (n=71)",data:[90,93,72,54,48],backgroundColor:'#BE185D',borderRadius:4},
+      {label:"Operation Room (n=104)",data:[91,95,79,56,53],backgroundColor:GOOD,borderRadius:4},
+      {label:"Postnatal Care (n=111)",data:[75,84,43,30,27],backgroundColor:BAD,borderRadius:4}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',align:'end',labels:{boxWidth:14,padding:12,font:{weight:'700',size:11.5}}},
+      datalabels:{anchor:'end',align:'end',offset:4,color:'#1a2733',font:{weight:'700',size:10},formatter:v=>v+'%',clamp:true}},
+    scales:{y:{max:115,ticks:{callback:v=>v+'%',stepSize:25},grid:{color:'#EEF1F6'}},x:{grid:{display:false},ticks:{font:{size:11}}}}}
+});
+
+// === Commodity readiness bar ===
+const commodData=[
+  ["Oxygen (delivery + NICU)",76],
+  ["Oxytocin",70],
+  ["Magnesium sulfate",65],
+  ["Antenatal corticosteroids",59],
+  ["Injectable antibiotics",51],
+  ["Ambu bag size 0 & 1",51],
+  ["CPAP",27]
+];
+new Chart(document.getElementById('chCommod'),{type:'bar',
+  data:{labels:commodData.map(d=>d[0]),
+    datasets:[{label:"% facilities fully ready",data:commodData.map(d=>d[1]),
+      backgroundColor:commodData.map(d=>d[1]>=70?GOOD:d[1]>=50?WARN:BAD),borderRadius:4}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},
+      datalabels:{anchor:'end',align:'end',offset:4,color:'#1a2733',font:{weight:'800',size:11},formatter:v=>v+'%',clamp:true}},
+    scales:{x:{max:115,ticks:{callback:v=>v+'%',stepSize:25},grid:{color:'#EEF1F6'}},y:{grid:{display:false},ticks:{font:{size:11.5}}}}}
+});
+
+// === Country commodity table ===
+const countries=[
+  ["Mongolia","MNG",25,100.0,100.0,100.0,100.0,100.0,96.0],
+  ["China","CHN",50,100.0,100.0,90.0,null,null,null],
+  ["Cambodia","KHM",32,96.8,100.0,81.2,90.6,100.0,93.8],
+  ["Vietnam","VNM",49,91.8,98.0,69.4,93.9,34.7,83.7],
+  ["Lao PDR","LAO",42,90.5,100.0,90.5,92.9,42.9,97.6],
+  ["Solomon Islands","SLB",7,100.0,85.7,100.0,100.0,0.0,0.0],
+  ["Papua New Guinea","PNG",2,100.0,100.0,100.0,100.0,100.0,100.0]
+];
+function clsFor(v){if(v==null) return"";return v>=80?"cell-good":v>=50?"cell-warn":"cell-bad";}
+const tbl=document.getElementById('commodTbl');
+countries.forEach(r=>{
+  const vals=r.slice(3,9).filter(v=>v!=null);
+  const avg=vals.length?(vals.reduce((s,v)=>s+v,0)/vals.length).toFixed(0):'—';
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><strong>${r[0]}</strong> <small style="color:var(--mute)">${r[1]}</small></td>
+    <td class="cell-pct">${r[2]}</td>`+
+    [3,4,5,6,7,8].map(i=>`<td class="cell-pct ${clsFor(r[i])}">${r[i]==null?'&mdash;':r[i].toFixed(1)+'%'}</td>`).join('')+
+    `<td class="cell-pct" style="color:${avg>=80?'var(--good)':avg>=50?'#C77A1F':'var(--bad)'}"><strong>${avg==='—'?'—':avg+'%'}</strong></td>`;
+  tbl.appendChild(tr);
+});
+</script>
+<script>
+(function(){
+  if(typeof Chart!=='undefined'){Chart.defaults.animation.duration=2000;Chart.defaults.animation.easing='easeOutQuart';Chart.defaults.animation.delay=function(ctx){if(ctx.type==='data'&&ctx.mode==='default'&&!ctx.dropped){ctx.dropped=true;return ctx.dataIndex*60+ctx.datasetIndex*120;}return 0;};Chart.defaults.transitions.active.animation.duration=1200;}
+  function animateNode(node){const orig=node.nodeValue;const norm=orig.replace(/−/g,'-');
+    const m=norm.match(/^(\s*)(-?[\d,]+(?:\.\d+)?)/);if(!m||!/\d/.test(m[2])) return;
+    const prefix=m[1]||'';const numStrRaw=m[2];const numStrClean=numStrRaw.replace(/,/g,'');
+    const target=parseFloat(numStrClean);if(isNaN(target)) return;
+    const decimals=numStrClean.includes('.')?numStrClean.split('.')[1].length:0;
+    const useCommas=numStrRaw.includes(',');const isNeg=target<0;const absT=Math.abs(target);
+    const suffix=orig.substring(prefix.length+numStrRaw.length);const dur=2000;const t0=performance.now();
+    function fmt(v){let s=decimals>0?v.toFixed(decimals):Math.round(v).toString();
+      if(useCommas&&decimals===0) s=s.replace(/\B(?=(\d{3})+(?!\d))/g,',');return (isNeg?'−':'')+s;}
+    function tick(now){const p=Math.min((now-t0)/dur,1);const eased=1-Math.pow(1-p,4);
+      node.nodeValue=prefix+fmt(absT*eased)+suffix;
+      if(p<1) requestAnimationFrame(tick);else node.nodeValue=orig;}
+    requestAnimationFrame(tick);}
+  function animateEl(el){const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;
+    while(n=w.nextNode()){if(/\d/.test(n.nodeValue)){animateNode(n);return;}}}
+  function setup(){const sel='.kpi-num,.highlight-num,.hstat-num,.composite-num,.alert-num,.score-num,.cstep-num,.commod-num,.pcard-num,.rcard-num,.gov-num,.warn-num,.program-stat-num';
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{
+      if(e.isIntersecting&&!e.target.dataset.anim){e.target.dataset.anim='1';animateEl(e.target);}});},{threshold:0.3});
+    document.querySelectorAll(sel).forEach(el=>obs.observe(el));}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',setup);else setTimeout(setup,80);
+})();
+</script>
+</body>
+</html>
